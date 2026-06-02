@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Filament\Resources\Transactions\Schemas;
+
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
+
+class TransactionForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                DatePicker::make('transaction_date')
+                    ->label('Tanggal Transaksi')
+                    ->required(),
+
+                TextInput::make('description')
+                    ->label('Keterangan')
+                    ->required()
+                    ->maxLength(100),
+
+                TextInput::make('amount')
+                    ->label('Nominal')
+                    ->numeric()
+                    ->required(),
+
+                Select::make('transaction_type')
+                    ->label('Jenis Transaksi')
+                    ->options([
+                        'income' => 'Pemasukan',
+                        'expense' => 'Pengeluaran',
+                    ])
+                    ->required(),
+            ]);
+    }
+}
