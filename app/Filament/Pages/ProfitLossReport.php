@@ -15,6 +15,8 @@ class ProfitLossReport extends Page
 
     protected string $view = 'filament.pages.profit-loss-report';
 
+    protected static ?int $navigationSort = 5;
+
     public float $totalIncome = 0;
 
     public float $totalExpense = 0;

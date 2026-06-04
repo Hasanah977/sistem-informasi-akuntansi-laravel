@@ -16,19 +16,25 @@ class AccountsTable
         return $table
             ->columns([
                 TextColumn::make('code')
-                    ->searchable(),
+                    ->label('Kode Akun')
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('name')
+                    ->label('Nama Akun')
                     ->searchable(),
+
                 TextColumn::make('type')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Tipe Akun')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'asset' => 'Asset',
+                        'liability' => 'Liability',
+                        'equity' => 'Equity',
+                        'revenue' => 'Revenue',
+                        'expense' => 'Expense',
+                        default => $state,
+                    }),
             ])
             ->filters([
                 //

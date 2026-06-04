@@ -7,6 +7,8 @@ use Filament\Pages\Dashboard as BaseDashboard;
 
 class Dashboard extends BaseDashboard
 {
+    protected static bool $shouldRegisterNavigation = false;
+
     public float $totalIncome = 0;
 
     public float $totalExpense = 0;
@@ -17,11 +19,9 @@ class Dashboard extends BaseDashboard
 
     public function mount(): void
     {
-        $this->totalIncome = Transaction::where('transaction_type', 'income')
-            ->sum('amount');
+        $this->totalIncome = Transaction::where('transaction_type', 'income')->sum('amount');
 
-        $this->totalExpense = Transaction::where('transaction_type', 'expense')
-            ->sum('amount');
+        $this->totalExpense = Transaction::where('transaction_type', 'expense')->sum('amount');
 
         $this->netProfit = $this->totalIncome - $this->totalExpense;
 

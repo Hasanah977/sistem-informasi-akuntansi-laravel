@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Transactions\Schemas;
 
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -13,8 +13,10 @@ class TransactionForm
     {
         return $schema
             ->components([
-                DatePicker::make('transaction_date')
-                    ->label('Tanggal Transaksi')
+                DateTimePicker::make('transaction_date')
+                    ->label('Tanggal & Jam Transaksi')
+                    ->default(now())
+                    ->seconds(false)
                     ->required(),
 
                 TextInput::make('description')

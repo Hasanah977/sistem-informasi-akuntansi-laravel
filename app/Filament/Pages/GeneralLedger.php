@@ -15,6 +15,8 @@ class GeneralLedger extends Page
 
     protected string $view = 'filament.pages.general-ledger';
 
+    protected static ?int $navigationSort = 4;
+
     public $transactions;
 
     public function mount(): void

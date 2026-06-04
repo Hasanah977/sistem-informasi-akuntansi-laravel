@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->date('transaction_date');
+            $table->dateTime('transaction_date');
             $table->string('description', 100);
             $table->decimal('amount', 15, 2);
             $table->enum('transaction_type', [
